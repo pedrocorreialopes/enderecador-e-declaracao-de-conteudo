@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Declaração de Conteúdo & Endereçador - Correios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-bg" class="particles-bg"></div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Header -->
+    <header id="main-header">
+        <div class="header-content">
+            <div class="logo-area animate-fade-in">
+                <i class="fas fa-envelope-open-text logo-icon"></i>
+                <div>
+                    <h1>Declaração de Conteúdo</h1>
+                    <p class="subtitle">Sistema de preenchimento para envios dos Correios</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button id="btn-dark-mode" class="btn-icon" title="Alternar tema escuro">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="btn-fullscreen" class="btn-icon" title="Tela cheia">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Navigation Tabs -->
+        <nav class="tabs-nav">
+            <button class="tab-btn active" data-tab="declaracao">
+                <i class="fas fa-file-alt"></i> Declaração de Conteúdo
+            </button>
+            <button class="tab-btn" data-tab="enderecador">
+                <i class="fas fa-map-marker-alt"></i> Endereçador
+            </button>
+            <button class="tab-btn" data-tab="historico">
+                <i class="fas fa-history"></i> Histórico
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Progress Bar -->
+        <div class="progress-container animate-slide-up">
+            <div class="progress-bar" id="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="progress-text" id="progress-text">0% preenchido</span>
+        </div>
+
+        <!-- Tab: Declaração de Conteúdo -->
+        <section id="tab-declaracao" class="tab-content active">
+            <form id="form-declaracao" class="modern-form">
+                <!-- Remetente/Destinatário Section -->
+                <div class="form-section animate-slide-up" style="--delay: 0.1s">
+                    <div class="section-header">
+                        <i class="fas fa-user-circle"></i>
+                        <h2>Dados do Remetente</h2>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group col-span-2">
+                            <label for="rem-nome">Nome Completo</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="rem-nome" name="rem-nome" placeholder="Seu nome completo" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rem-cpf">CPF do Remetente</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-id-card"></i>
+                                <input type="text" id="rem-cpf" name="rem-cpf" placeholder="000.000.000-00" maxlength="14">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rem-telefone">Telefone</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="rem-telefone" name="rem-telefone" placeholder="(00) 00000-0000" maxlength="15">
+                            </div>
+                        </div>
+                        <div class="form-group col-span-2">
+                            <label for="rem-endereco">Endereço</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <input type="text" id="rem-endereco" name="rem-endereco" placeholder="Rua, número">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rem-complemento">Complemento</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-building"></i>
+                                <input type="text" id="rem-complemento" name="rem-complemento" placeholder="Apto, Bloco...">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rem-cep">CEP</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-mail-bulk"></i>
+                                <input type="text" id="rem-cep" name="rem-cep" placeholder="00000-000" maxlength="9">
+                                <button type="button" class="btn-cep" id="btn-busca-cep-rem" title="Buscar CEP">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rem-cidade">Cidade</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-city"></i>
+                                <input type="text" id="rem-cidade" name="rem-cidade" placeholder="Cidade">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rem-uf">UF</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-flag"></i>
+                                <select id="rem-uf" name="rem-uf">
+                                    <option value="">UF</option>
+                                    <option value="AC">AC</option><option value="AL">AL</option>
+                                    <option value="AP">AP</option><option value="AM">AM</option>
+                                    <option value="BA">BA</option><option value="CE">CE</option>
+                                    <option value="DF">DF</option><option value="ES">ES</option>
+                                    <option value="GO">GO</option><option value="MA">MA</option>
+                                    <option value="MT">MT</option><option value="MS">MS</option>
+                                    <option value="MG">MG</option><option value="PA">PA</option>
+                                    <option value="PB">PB</option><option value="PR">PR</option>
+                                    <option value="PE">PE</option><option value="PI">PI</option>
+                                    <option value="RJ">RJ</option><option value="RN">RN</option>
+                                    <option value="RS">RS</option><option value="RO">RO</option>
+                                    <option value="RR">RR</option><option value="SC">SC</option>
+                                    <option value="SP">SP</option><option value="SE">SE</option>
+                                    <option value="TO">TO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Destinatário -->
+                <div class="form-section animate-slide-up" style="--delay: 0.2s">
+                    <div class="section-header">
+                        <i class="fas fa-user-friends"></i>
+                        <h2>Dados do Destinatário</h2>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group col-span-2">
+                            <label for="dest-nome">Nome Completo</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="dest-nome" name="dest-nome" placeholder="Nome do destinatário" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dest-telefone">Telefone</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="dest-telefone" name="dest-telefone" placeholder="(00) 00000-0000" maxlength="15">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dest-cep">CEP</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-mail-bulk"></i>
+                                <input type="text" id="dest-cep" name="dest-cep" placeholder="00000-000" maxlength="9">
+                                <button type="button" class="btn-cep" id="btn-busca-cep-dest" title="Buscar CEP">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group col-span-2">
+                            <label for="dest-endereco">Endereço</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <input type="text" id="dest-endereco" name="dest-endereco" placeholder="Rua, número">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dest-complemento">Complemento</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-building"></i>
+                                <input type="text" id="dest-complemento" name="dest-complemento" placeholder="Apto, Bloco...">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dest-cidade">Cidade</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-city"></i>
+                                <input type="text" id="dest-cidade" name="dest-cidade" placeholder="Cidade">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dest-uf">UF</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-flag"></i>
+                                <select id="dest-uf" name="dest-uf">
+                                    <option value="">UF</option>
+                                    <option value="AC">AC</option><option value="AL">AL</option>
+                                    <option value="AP">AP</option><option value="AM">AM</option>
+                                    <option value="BA">BA</option><option value="CE">CE</option>
+                                    <option value="DF">DF</option><option value="ES">ES</option>
+                                    <option value="GO">GO</option><option value="MA">MA</option>
+                                    <option value="MT">MT</option><option value="MS">MS</option>
+                                    <option value="MG">MG</option><option value="PA">PA</option>
+                                    <option value="PB">PB</option><option value="PR">PR</option>
+                                    <option value="PE">PE</option><option value="PI">PI</option>
+                                    <option value="RJ">RJ</option><option value="RN">RN</option>
+                                    <option value="RS">RS</option><option value="RO">RO</option>
+                                    <option value="RR">RR</option><option value="SC">SC</option>
+                                    <option value="SP">SP</option><option value="SE">SE</option>
+                                    <option value="TO">TO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Itens da Declaração -->
+                <div class="form-section animate-slide-up" style="--delay: 0.3s">
+                    <div class="section-header">
+                        <i class="fas fa-box-open"></i>
+                        <h2>Identificação dos Bens</h2>
+                        <button type="button" id="btn-add-item" class="btn-add" title="Adicionar item">
+                            <i class="fas fa-plus"></i> Adicionar Item
+                        </button>
+                    </div>
+                    <div class="items-table-wrapper">
+                        <table class="items-table" id="items-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-item">#</th>
+                                    <th class="col-conteudo">Conteúdo</th>
+                                    <th class="col-quant">Qtd.</th>
+                                    <th class="col-valor">Valor (R$)</th>
+                                    <th class="col-actions">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="items-body">
+                                <tr class="item-row" data-index="1">
+                                    <td class="col-item">1</td>
+                                    <td class="col-conteudo"><input type="text" name="item-conteudo-1" placeholder="Descrição do item" class="input-table"></td>
+                                    <td class="col-quant"><input type="number" name="item-quant-1" min="1" value="1" class="input-table input-number"></td>
+                                    <td class="col-valor"><input type="text" name="item-valor-1" placeholder="0,00" class="input-table input-money"></td>
+                                    <td class="col-actions"><button type="button" class="btn-remove-item" title="Remover"><i class="fas fa-trash-alt"></i></button></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2" class="totals-label">TOTAIS:</td>
+                                    <td id="total-quant" class="total-value">0</td>
+                                    <td id="total-valor" class="total-value">R$ 0,00</td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="form-group" style="margin-top: 1rem;">
+                        <label for="peso-total">Peso Total (kg)</label>
+                        <div class="input-wrapper" style="max-width: 200px;">
+                            <i class="fas fa-weight-hanging"></i>
+                            <input type="text" id="peso-total" name="peso-total" placeholder="0,000">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Declaração Legal -->
+                <div class="form-section animate-slide-up" style="--delay: 0.4s">
+                    <div class="section-header">
+                        <i class="fas fa-gavel"></i>
+                        <h2>Declaração</h2>
+                    </div>
+                    <div class="legal-text">
+                        <p>Declaro que não me enquadro no conceito de contribuinte previsto no art. 4º da Lei Complementar nº 87/1996, uma vez que não realizo, com habitualidade ou em volume que caracterize intuito comercial, operações de circulação de mercadoria, ainda que se iniciem no exterior, ou estou dispensado da emissão da nota fiscal por força da legislação tributária vigente, responsabilizando-me, nos termos da lei e a quem de direito, por informações inverídicas.</p>
+                        <p>Declaro ainda que não estou postando conteúdo inflamável, explosivo, causador de combustão espontânea, tóxico, corrosivo, gás ou qualquer outro conteúdo que constitua perigo, conforme o art. 13 da Lei Postal nº 6.538/78.</p>
+                    </div>
+                    <div class="form-grid" style="margin-top: 1rem;">
+                        <div class="form-group">
+                            <label for="local-data">Local e Data</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-calendar-alt"></i>
+                                <input type="text" id="local-data" name="local-data" placeholder="Cidade, DD/MM/AAAA">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="assinatura">Assinatura (Nome)</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-signature"></i>
+                                <input type="text" id="assinatura" name="assinatura" placeholder="Assinatura do remetente">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 1rem;">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" id="aceite-termos" required>
+                            <span class="checkmark"></span>
+                            <span>Li e concordo com os termos da declaração acima</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="form-actions animate-slide-up" style="--delay: 0.5s">
+                    <button type="button" id="btn-save" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Salvar Rascunho
+                    </button>
+                    <button type="button" id="btn-print" class="btn btn-success">
+                        <i class="fas fa-print"></i> Imprimir
+                    </button>
+                    <button type="button" id="btn-pdf" class="btn btn-info">
+                        <i class="fas fa-file-pdf"></i> Gerar PDF
+                    </button>
+                    <button type="reset" id="btn-clear" class="btn btn-danger">
+                        <i class="fas fa-eraser"></i> Limpar Tudo
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Tab: Endereçador -->
+        <section id="tab-enderecador" class="tab-content">
+            <div class="enderecador-preview animate-slide-up">
+                <div class="section-header">
+                    <i class="fas fa-envelope"></i>
+                    <h2>Pré-visualização do Endereçador</h2>
+                </div>
+                <p class="hint-text"><i class="fas fa-info-circle"></i> Preencha os dados na aba "Declaração de Conteúdo" para gerar o endereçador automaticamente.</p>
+                
+                <div class="enderecador-card" id="enderecador-card">
+                    <div class="enderecador-box destinatario">
+                        <div class="box-label">DESTINATÁRIO / Recipient</div>
+                        <div class="box-field" id="end-dest-nome">—</div>
+                        <div class="box-row">
+                            <div>
+                                <span class="field-label">Endereço:</span>
+                                <span class="box-field" id="end-dest-endereco">—</span>
+                            </div>
+                        </div>
+                        <div class="box-row">
+                            <div>
+                                <span class="field-label">Complemento:</span>
+                                <span class="box-field" id="end-dest-complemento">—</span>
+                            </div>
+                        </div>
+                        <div class="box-row three-cols">
+                            <div>
+                                <span class="field-label">Cidade:</span>
+                                <span class="box-field" id="end-dest-cidade">—</span>
+                            </div>
+                            <div>
+                                <span class="field-label">UF:</span>
+                                <span class="box-field" id="end-dest-uf">—</span>
+                            </div>
+                            <div>
+                                <span class="field-label">CEP:</span>
+                                <span class="box-field" id="end-dest-cep">—</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="enderecador-divider"></div>
+                    <div class="enderecador-box remetente">
+                        <div class="box-label">REMETENTE / Sender</div>
+                        <div class="box-field" id="end-rem-nome">—</div>
+                        <div class="box-row">
+                            <div>
+                                <span class="field-label">Endereço:</span>
+                                <span class="box-field" id="end-rem-endereco">—</span>
+                            </div>
+                        </div>
+                        <div class="box-row">
+                            <div>
+                                <span class="field-label">Complemento:</span>
+                                <span class="box-field" id="end-rem-complemento">—</span>
+                            </div>
+                        </div>
+                        <div class="box-row three-cols">
+                            <div>
+                                <span class="field-label">Cidade:</span>
+                                <span class="box-field" id="end-rem-cidade">—</span>
+                            </div>
+                            <div>
+                                <span class="field-label">UF:</span>
+                                <span class="box-field" id="end-rem-uf">—</span>
+                            </div>
+                            <div>
+                                <span class="field-label">CEP:</span>
+                                <span class="box-field" id="end-rem-cep">—</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions" style="margin-top: 2rem;">
+                    <button type="button" id="btn-print-enderecador" class="btn btn-success">
+                        <i class="fas fa-print"></i> Imprimir Endereçador
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Histórico -->
+        <section id="tab-historico" class="tab-content">
+            <div class="form-section animate-slide-up">
+                <div class="section-header">
+                    <i class="fas fa-history"></i>
+                    <h2>Histórico de Declarações Salvas</h2>
+                    <button type="button" id="btn-clear-history" class="btn-add" style="background: #ef4444;">
+                        <i class="fas fa-trash"></i> Limpar Histórico
+                    </button>
+                </div>
+                <div id="history-list" class="history-list">
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <p>Nenhuma declaração salva ainda.</p>
+                        <p class="hint-text">Use o botão "Salvar Rascunho" para guardar suas declarações.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p><i class="fas fa-heart" style="color: #ef4444;"></i> Desenvolvido com tecnologia moderna</p>
+            <p class="footer-info">Formulário não oficial — Use como ferramenta auxiliar de preenchimento</p>
+        </div>
+    </footer>
+
+    <!-- Print Template (hidden) -->
+    <div id="print-template" class="print-template">
+        <div class="print-header">
+            <h1>DECLARAÇÃO DE CONTEÚDO</h1>
+        </div>
+        <div id="print-content"></div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
