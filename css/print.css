@@ -1,0 +1,162 @@
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+    /* Hide non-printable elements */
+    header,
+    footer,
+    .tabs-nav,
+    .progress-container,
+    .form-actions,
+    .btn-cep,
+    .btn-remove-item,
+    .btn-add,
+    .toast-container,
+    .particles-bg,
+    #btn-dark-mode,
+    #btn-fullscreen,
+    .header-actions,
+    .hint-text,
+    .checkbox-wrapper,
+    #tab-historico {
+        display: none !important;
+    }
+
+    /* Reset backgrounds */
+    body {
+        background: white !important;
+        color: black !important;
+        font-size: 11pt;
+        line-height: 1.4;
+    }
+
+    main {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .tab-content {
+        display: block !important;
+    }
+
+    #tab-historico {
+        display: none !important;
+    }
+
+    .form-section {
+        box-shadow: none !important;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        padding: 15px;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .form-section:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    .section-header {
+        border-bottom: 2px solid #333;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+    }
+
+    .section-header i {
+        display: none;
+    }
+
+    .section-header h2 {
+        font-size: 14pt;
+        color: black;
+    }
+
+    .input-wrapper {
+        border: none;
+    }
+
+    .input-wrapper i {
+        display: none;
+    }
+
+    .input-wrapper input,
+    .input-wrapper select {
+        border: none !important;
+        border-bottom: 1px solid #999 !important;
+        border-radius: 0 !important;
+        padding: 4px 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        font-size: 10pt;
+    }
+
+    .form-group label {
+        font-size: 8pt;
+        color: #666;
+    }
+
+    /* Items table */
+    .items-table {
+        border: 1px solid #333;
+    }
+
+    .items-table thead {
+        background: #333 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .items-table th {
+        color: white;
+        font-size: 9pt;
+        padding: 6px;
+    }
+
+    .items-table td {
+        padding: 4px 6px;
+        font-size: 10pt;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .input-table {
+        border: none !important;
+        padding: 2px !important;
+        background: transparent !important;
+    }
+
+    .col-actions {
+        display: none !important;
+    }
+
+    /* Legal text */
+    .legal-text {
+        border: none;
+        border-left: 3px solid #333;
+        background: transparent;
+        font-size: 8pt;
+        padding: 8px 12px;
+    }
+
+    /* Endereçador */
+    .enderecador-card {
+        border: 2px solid #333;
+        padding: 15px;
+    }
+
+    .enderecador-box {
+        border: 1px solid #666;
+    }
+
+    /* Page settings */
+    @page {
+        margin: 1.5cm;
+        size: A4;
+    }
+
+    /* Force page break before endereçador */
+    #tab-enderecador {
+        page-break-before: always;
+    }
+}
